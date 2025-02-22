@@ -1,0 +1,6 @@
+Flask
+pdfplumber
+pandas
+xlrd
+xlwt
+gunicorn
