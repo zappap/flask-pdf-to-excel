@@ -65,6 +65,9 @@ def index():
         belge_no = request.form["belge_no"]
 
         if pdf_file:
+            import os
+            OUTPUT_FOLDER = "outputs"
+            os.makedirs(OUTPUT_FOLDER, exist_ok=True)  # ✅ Ensure the folder exists
             pdf_path = os.path.join(OUTPUT_FOLDER, "input.pdf")
             pdf_file.save(pdf_path)
 
