@@ -8,7 +8,7 @@ import os
 import datetime
 
 app = Flask(__name__)
-OUTPUT_FOLDER = "outputs"
+OUTPUT_FOLDER = "/tmp/"
 TEMPLATE_URL = "http://www.mavi.web.tr/ygms/Arac_Giris_Cikis_Aktarim_Sablon.xls"
 
 def process_pdf_to_xls(pdf_path, output_folder, yon, belge_no):
@@ -66,7 +66,7 @@ def index():
 
         if pdf_file:
             import os
-            OUTPUT_FOLDER = "outputs"
+            OUTPUT_FOLDER = "/tmp/"
             os.makedirs(OUTPUT_FOLDER, exist_ok=True)  # ✅ Ensure the folder exists
             pdf_path = os.path.join(OUTPUT_FOLDER, "input.pdf")
             pdf_file.save(pdf_path)
