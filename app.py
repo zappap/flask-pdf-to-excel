@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request
 import os
 import pdfplumber
 import pandas as pd
@@ -26,7 +26,6 @@ def index():
             file.save(filename)
             filenames.append(filename)
 
-        # Merge PDFs
         path = os.path.dirname(filenames[0])
         merger = PdfMerger()
         for pdf in filenames:
@@ -35,7 +34,6 @@ def index():
         merger.write(output_pdf)
         merger.close()
 
-        # Extract data from PDF
         pdf = pdfplumber.open(output_pdf)
         all_pages = [pd.DataFrame(page.extract_table()[1:], columns=page.extract_table()[0]) for page in pdf.pages]
         all_data = pd.concat(all_pages)
@@ -54,7 +52,6 @@ def index():
         df.insert(7, "time", date_time["time"])
         df = df.set_index("YÖN")
 
-        # Download template & save Excel file
         url = "http://www.mavi.web.tr/ygms/Arac_Giris_Cikis_Aktarim_Sablon.xls"
         template_path = os.path.join(path, "sablon.xls")
         urllib.request.urlretrieve(url, template_path)
