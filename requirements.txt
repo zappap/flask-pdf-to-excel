@@ -1,6 +1,5 @@
-Flask
-pdfplumber
+flask
 pandas
-xlrd
-xlwt
-gunicorn
+pdfplumber
+xlwings
+PyPDF2
